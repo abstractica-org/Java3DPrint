@@ -1,5 +1,5 @@
 package org.abstractica;
 
-public interface Printable
+public interface Java3DPrint
 {
 }
