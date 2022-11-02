@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.abstractica</groupId>
-    <artifactId>AbstracticaProjectTemplate</artifactId>
+    <artifactId>Java3DPrint</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <repositories>
@@ -23,8 +23,8 @@
     <dependencies>
         <dependency>
             <groupId>com.github.abstractica-org</groupId>
-            <artifactId>AbstracticaBase</artifactId>
-            <version>v0.0.1</version>
+            <artifactId>JavaCSG</artifactId>
+            <version>0.0.1</version>
         </dependency>
     </dependencies>
 
