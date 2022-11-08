@@ -1,5 +1,7 @@
 package org.abstractica;
 
-public interface Java3DPrint
+import org.abstractica.javacsg.JavaCSG;
+
+public interface Java3DPrint extends JavaCSG
 {
 }
