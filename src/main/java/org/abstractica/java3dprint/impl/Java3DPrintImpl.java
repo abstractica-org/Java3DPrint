@@ -1,98 +1,68 @@
 package org.abstractica.java3dprint.impl;
 
+import org.abstractica.java3dprint.Adjust;
 import org.abstractica.java3dprint.Java3DPrint;
 import org.abstractica.javacsg.impl.JavaCSGImpl;
 
 public class Java3DPrintImpl extends JavaCSGImpl implements Java3DPrint
 {
-	private final double holeTightXYAdj;
-	private final double holeLooseXYAdj;
-	private final double holeTightRoundHorizontalAdj;
-	private final double holeLooseRoundHorizontalAdj;
-	private final double solidTightXYAdj;
-	private final double solidLooseXYAdj;
-	private final double solidTightZAdj;
-	private final double solidLooseZAdj;
+	private final Adjust holeTight;
+	private final Adjust holeLoose;
+	private final Adjust solidTight;
+	private final Adjust solidLoose;
 
 	public Java3DPrintImpl
 			(
 				double holeTightXYAdj,
+				double holeTightZAdj,
 				double holeLooseXYAdj,
-				double holeTightRoundHorizontalAdj,
-				double holeLooseRoundHorizontalAdj,
+				double holeLooseZAdj,
 				double solidTightXYAdj,
-				double solidLooseXYAdj,
 				double solidTightZAdj,
+				double solidLooseXYAdj,
 				double solidLooseZAdj
 			)
 	{
-		this.holeTightXYAdj = holeTightXYAdj;
-		this.holeLooseXYAdj = holeLooseXYAdj;
-		this.holeTightRoundHorizontalAdj = holeTightRoundHorizontalAdj;
-		this.holeLooseRoundHorizontalAdj = holeLooseRoundHorizontalAdj;
-		this.solidTightXYAdj = solidTightXYAdj;
-		this.solidLooseXYAdj = solidLooseXYAdj;
-		this.solidTightZAdj = solidTightZAdj;
-		this.solidLooseZAdj = solidLooseZAdj;
+		this.holeTight = new AdjustImpl(holeTightXYAdj, holeTightZAdj);
+		this.holeLoose = new AdjustImpl(holeLooseXYAdj, holeLooseZAdj);
+		this.solidTight = new AdjustImpl(solidTightXYAdj, solidTightZAdj);
+		this.solidLoose = new AdjustImpl(solidLooseXYAdj, solidLooseZAdj);
 	}
 
 	public Java3DPrintImpl()
 	{
-		holeTightXYAdj = 0.1;
-		holeLooseXYAdj = 0.2;
-		holeTightRoundHorizontalAdj = 0.1;
-		holeLooseRoundHorizontalAdj = 0.2;
-		solidTightXYAdj = -0.1;
-		solidLooseXYAdj = -0.2;
-		solidTightZAdj = -0.1;
-		solidLooseZAdj = -0.2;
+		this(   0.1,
+				0.1,
+				0.2,
+				0.2,
+				-0.1,
+				-0.1,
+				-0.2,
+				-0.2);
+	}
+
+
+	@Override
+	public Adjust holeTight()
+	{
+		return holeTight;
 	}
 
 	@Override
-	public double holeTightXYAdj()
+	public Adjust holeLoose()
 	{
-		return holeTightXYAdj;
+		return holeLoose;
 	}
 
 	@Override
-	public double holeLooseXYAdj()
+	public Adjust solidTight()
 	{
-		return holeLooseXYAdj;
+		return solidTight;
 	}
 
 	@Override
-	public double holeTightRoundHorizontalAdj()
+	public Adjust solidLoose()
 	{
-		return holeTightRoundHorizontalAdj;
-	}
-
-	@Override
-	public double holeLooseRoundHorizontalAdj()
-	{
-		return holeLooseRoundHorizontalAdj;
-	}
-
-	@Override
-	public double solidTightXYAdj()
-	{
-		return solidTightXYAdj;
-	}
-
-	@Override
-	public double solidLooseXYAdj()
-	{
-		return solidLooseXYAdj;
-	}
-
-	@Override
-	public double solidTightZAdj()
-	{
-		return solidTightXYAdj;
-	}
-
-	@Override
-	public double solidLooseZAdj()
-	{
-		return solidLooseZAdj;
+		return solidLoose;
 	}
 }
