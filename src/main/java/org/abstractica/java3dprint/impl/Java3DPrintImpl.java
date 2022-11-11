@@ -11,14 +11,14 @@ public class Java3DPrintImpl extends JavaCSGImpl implements Java3DPrint
 	private final Adjust solidTight;
 	private final Adjust solidLoose;
 
-	public Java3DPrintImpl(String moduleDirectoryName,
+	public Java3DPrintImpl(boolean useCache,
 	                       boolean binarySTL,
 	                       Adjust holeTight,
 	                       Adjust holeLoose,
 	                       Adjust solidTight,
 	                       Adjust solidLoose)
 	{
-		super(moduleDirectoryName, binarySTL);
+		super(useCache, binarySTL);
 		this.holeTight = holeTight;
 		this.holeLoose = holeLoose;
 		this.solidTight = solidTight;
@@ -27,7 +27,7 @@ public class Java3DPrintImpl extends JavaCSGImpl implements Java3DPrint
 
 	public Java3DPrintImpl
 			(
-				String moduleDirectoryName,
+				boolean useCache,
 				boolean binarySTL,
 				double holeTightXYAdj,
 				double holeTightZAdj,
@@ -39,7 +39,7 @@ public class Java3DPrintImpl extends JavaCSGImpl implements Java3DPrint
 				double solidLooseZAdj
 			)
 	{
-		this(   moduleDirectoryName, binarySTL,
+		this(   useCache, binarySTL,
 				new AdjustImpl(holeTightXYAdj, holeTightZAdj),
 				new AdjustImpl(holeLooseXYAdj, holeLooseZAdj),
 				new AdjustImpl(solidLooseXYAdj, solidLooseZAdj),
@@ -48,10 +48,9 @@ public class Java3DPrintImpl extends JavaCSGImpl implements Java3DPrint
 
 
 
-	public Java3DPrintImpl(String moduleDirectoryName,
-	                       boolean binarySTL)
+	public Java3DPrintImpl(boolean useCache)
 	{
-		this( moduleDirectoryName, binarySTL,
+		this( useCache, true,
 				0.1,
 				0.1,
 				0.2,
@@ -64,7 +63,7 @@ public class Java3DPrintImpl extends JavaCSGImpl implements Java3DPrint
 
 	public Java3DPrintImpl()
 	{
-		this( null, false,
+		this( false, false,
 				0.1,
 				0.1,
 				0.2,
