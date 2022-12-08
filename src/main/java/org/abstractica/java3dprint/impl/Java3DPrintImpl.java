@@ -42,7 +42,7 @@ public class Java3DPrintImpl extends JavaCSGImpl implements Java3DPrint
 		this(   useCache, binarySTL,
 				new AdjustImpl(holeTightXYAdj, holeTightZAdj),
 				new AdjustImpl(holeLooseXYAdj, holeLooseZAdj),
-				new AdjustImpl(solidLooseXYAdj, solidLooseZAdj),
+				new AdjustImpl(solidTightXYAdj, solidTightZAdj),
 				new AdjustImpl(solidLooseXYAdj, solidLooseZAdj));
 	}
 
@@ -55,10 +55,10 @@ public class Java3DPrintImpl extends JavaCSGImpl implements Java3DPrint
 				0.1,
 				0.2,
 				0.2,
+				-0.05,
+				0,
 				-0.1,
-				-0.1,
-				-0.2,
-				-0.2);
+				-0.05);
 	}
 
 	public Java3DPrintImpl()
