@@ -26,10 +26,10 @@ public class Java3DPrintFactory
 				0.1,
 				0.2,
 				0.2,
-				0.1,
-				0.1,
-				0.2,
-				0.2);
+				-0.1,
+				0.0,
+				-0.2,
+				-0.1);
 		return new Java3DPrintImpl(base, profile);
 	}
 }
