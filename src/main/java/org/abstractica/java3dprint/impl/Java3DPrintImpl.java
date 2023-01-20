@@ -1,101 +1,66 @@
 package org.abstractica.java3dprint.impl;
 
-import org.abstractica.java3dprint.Adjust;
 import org.abstractica.java3dprint.Java3DPrint;
+import org.abstractica.java3dprint.PrinterProfile;
+import org.abstractica.javacsg.JavaCSGBase;
 import org.abstractica.javacsg.impl.JavaCSGImpl;
 
 public class Java3DPrintImpl extends JavaCSGImpl implements Java3DPrint
 {
-	private final Adjust holeTight;
-	private final Adjust holeLoose;
-	private final Adjust solidTight;
-	private final Adjust solidLoose;
+	private final PrinterProfile profile;
 
-	public Java3DPrintImpl(boolean useCache,
-	                       boolean binarySTL,
-	                       Adjust holeTight,
-	                       Adjust holeLoose,
-	                       Adjust solidTight,
-	                       Adjust solidLoose)
+	public Java3DPrintImpl(JavaCSGBase base, PrinterProfile profile)
 	{
-		super(useCache, binarySTL);
-		this.holeTight = holeTight;
-		this.holeLoose = holeLoose;
-		this.solidTight = solidTight;
-		this.solidLoose = solidLoose;
-	}
-
-	public Java3DPrintImpl
-			(
-				boolean useCache,
-				boolean binarySTL,
-				double holeTightXYAdj,
-				double holeTightZAdj,
-				double holeLooseXYAdj,
-				double holeLooseZAdj,
-				double solidTightXYAdj,
-				double solidTightZAdj,
-				double solidLooseXYAdj,
-				double solidLooseZAdj
-			)
-	{
-		this(   useCache, binarySTL,
-				new AdjustImpl(holeTightXYAdj, holeTightZAdj),
-				new AdjustImpl(holeLooseXYAdj, holeLooseZAdj),
-				new AdjustImpl(solidTightXYAdj, solidTightZAdj),
-				new AdjustImpl(solidLooseXYAdj, solidLooseZAdj));
-	}
-
-
-
-	public Java3DPrintImpl(boolean useCache)
-	{
-		this( useCache, true,
-				0.1,
-				0.1,
-				0.2,
-				0.2,
-				-0.05,
-				0,
-				-0.1,
-				-0.05);
-	}
-
-	public Java3DPrintImpl()
-	{
-		this( false, false,
-				0.1,
-				0.1,
-				0.2,
-				0.2,
-				-0.05,
-				0,
-				-0.1,
-				-0.05);
+		super(base);
+		this.profile = profile;
 	}
 
 
 	@Override
-	public Adjust holeTight()
+	public double holeTightXY()
 	{
-		return holeTight;
+		return profile.holeTightXY();
 	}
 
 	@Override
-	public Adjust holeLoose()
+	public double holeTightZ()
 	{
-		return holeLoose;
+		return profile.holeTightZ();
 	}
 
 	@Override
-	public Adjust solidTight()
+	public double holeLooseXY()
 	{
-		return solidTight;
+		return profile.holeLooseXY();
 	}
 
 	@Override
-	public Adjust solidLoose()
+	public double holeLooseZ()
 	{
-		return solidLoose;
+		return profile.holeLooseZ();
+	}
+
+	@Override
+	public double solidTightXY()
+	{
+		return profile.solidTightXY();
+	}
+
+	@Override
+	public double solidTightZ()
+	{
+		return profile.solidTightZ();
+	}
+
+	@Override
+	public double solidLooseXY()
+	{
+		return profile.solidLooseXY();
+	}
+
+	@Override
+	public double solidLooseZ()
+	{
+		return profile.solidLooseZ();
 	}
 }
